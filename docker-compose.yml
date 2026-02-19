@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pressstart_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pressstart
+      POSTGRES_PASSWORD: pressstart
+      POSTGRES_DB: pressstart_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pressstart_pgdata:/var/lib/postgresql/data
+
+volumes:
+  pressstart_pgdata:
