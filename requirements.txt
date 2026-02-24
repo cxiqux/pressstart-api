@@ -1,21 +1,23 @@
-#Web framework
+# Web framework
 fastapi==0.115.0
 uvicorn[standard]==0.30.6
 
-#Database
-sqlalchemy==2.0.35
-alembic==1.13.3
+# Database
 psycopg2-binary==2.9.10
+databases[asyncpg]==0.9.0
 
-#Auth & Security
+# Migrations
+alembic==1.13.3
+
+# Auth & Security
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.12
 
-#Config
+# Config
 pydantic==2.9.2
 pydantic-settings==2.5.2
 python-dotenv==1.0.1
 
-#HTTP Client (para chamar a RAWG)
+# HTTP Client (para chamar a RAWG)
 httpx==0.27.2

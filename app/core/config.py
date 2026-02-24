@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings
 from pydantic import field_validator
-from typing import Optional
 
 class Settings(BaseSettings):
     APP_NAME: str = "PressStart"
@@ -20,14 +19,10 @@ class Settings(BaseSettings):
     @field_validator("APP_ENV")
     @classmethod
     def validate_app_env(cls, v: str) -> str:
-        allowed = ["development", "production", "testing"]
-        if v not in allowed:
-            raise ValueError(f"APP_ENV must be one of{allowed}")
+        if v not in ("development", "production", "testing"):
+            raise ValueError(f"APP_ENV must be one of: development, production, testing")
         return v
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+
+    model_config = {"env_file": ".env", "case_sensitive": True}
 
 settings = Settings()
-
-    
