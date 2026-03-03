@@ -31,3 +31,12 @@ def create(username: str, email: str, password_hash: str):
             )
             conn.commit()
             return cursor.fetchone()
+        
+def get_by_id(user_id: str):
+    with get_connection() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT * FROM users WHERE id = %s",
+                (user_id,)
+            )
+            return cursor.fetchone()
