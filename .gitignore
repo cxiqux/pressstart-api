@@ -21,6 +21,10 @@ alembic/versions/*.pyc
 .DS_Store
 Thumbs.db
 
+# Claude
+.claude/
+PRESSSTART_MASTER_PROMPT.md
+
 
 pytest_cache/
 htmlcov/

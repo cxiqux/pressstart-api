@@ -40,3 +40,28 @@ def get_by_id(user_id: str):
                 (user_id,)
             )
             return cursor.fetchone()
+
+
+def update(user_id: str, username: str = None, avatar_url: str = None):
+    fields = []
+    values = []
+
+    if username is not None:
+        fields.append("username = %s")
+        values.append(username)
+    if avatar_url is not None:
+        fields.append("avatar_url = %s")
+        values.append(avatar_url)
+
+    if not fields:
+        return get_by_id(user_id)
+
+    values.append(user_id)
+    with get_connection() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                f"UPDATE users SET {', '.join(fields)} WHERE id = %s RETURNING *",
+                values
+            )
+            conn.commit()
+            return cursor.fetchone()

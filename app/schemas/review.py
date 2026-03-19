@@ -12,6 +12,7 @@ class ReviewCreate(BaseModel):
 class ReviewResponse(BaseModel):
     id: str
     user_id: str
+    username: str
     game_id: str
     score: int
     body: Optional[str] = None

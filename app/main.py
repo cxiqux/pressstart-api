@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.core.config import settings
-from app.api.routes import auth
+from app.api.routes import auth, users, games, backlog, reviews
 
 
 app = FastAPI(
@@ -10,6 +10,10 @@ app = FastAPI(
 )
 
 app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(games.router)
+app.include_router(backlog.router)
+app.include_router(reviews.router)
 
 
 @app.get("/health")
